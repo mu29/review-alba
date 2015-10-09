@@ -5,11 +5,13 @@ from Node import *
 
 class Markov:
     def __init__(self):
+        self.data = open('data.txt', 'w')
         self.nodes = {}
         self.start_nodes = []
 
     def make_database(self, reviews):
         for review in reviews:
+            self.data.write(review)
             words = review.split(' ')
             is_new_node = True
             for i in range(0, len(words)):
