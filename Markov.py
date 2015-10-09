@@ -11,7 +11,6 @@ class Markov:
 
     def make_database(self, reviews):
         for review in reviews:
-            review = review.encode('utf-8')
             self.data.write(review + '\n')
             words = review.split(' ')
             is_new_node = True

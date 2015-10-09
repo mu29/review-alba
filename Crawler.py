@@ -30,7 +30,9 @@ class Crawler:
         reviews = []
         for i in range(0, len(points)):
             point = int(points[i].string)
-            if ((positive and point > 7) or (not positive and point < 4)):
-                reviews.append(contents[i].contents[3].contents[0].strip())
+            if ((positive and point > 8) or (not positive and point < 3)):
+                text = contents[i].contents[3].contents[0].strip()
+                text = text.encode('utf-8')
+                reviews.append(text)
 
         return reviews
