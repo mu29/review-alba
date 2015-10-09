@@ -11,7 +11,8 @@ class Markov:
 
     def make_database(self, reviews):
         for review in reviews:
-            self.data.write(review.encode('utf-8') + '\n')
+            review = review.encode('utf-8')
+            self.data.write(review + '\n')
             words = review.split(' ')
             is_new_node = True
             for i in range(0, len(words) - 1):
@@ -27,14 +28,15 @@ class Markov:
                     if words[i].find('!') > 0: node.end = True
                     if words[i].find('?') > 0: node.end = True
                     if words[i].find('.') > 0: node.end = True
-                    if words[i].find(u'ㅋ') > 0: node.end = True
+                    if words[i].find('ㅋ') > 0: node.end = True
 
                     node.text = word
                     if node.end: is_new_node = True
                     else: node.next.append(words[i + 1])
 
                     self.nodes[word] = node
-                if is_new_node:
+                if is_new_node and not node.end:
+                    is_new_node = False
                     node.start = True
                     self.start_nodes.append(node)
 
