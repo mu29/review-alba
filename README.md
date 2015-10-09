@@ -1,6 +1,6 @@
 # review-alba
 
-Movie review bot using Naver review data & Markov Chain.
+Movie review bot using Naver review data & Markov Chain.  
 This bot can make both positive and negative reviews.
 
 ### Dependent
