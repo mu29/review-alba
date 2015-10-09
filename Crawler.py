@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 class Crawler:
     def __init__(self):
-        self.base_url = 'http://movie.naver.com/movie/point/af/list.nhn?target=before&page='
+        self.base_url = 'http://movie.naver.com/movie/point/af/list.nhn?target=after&page='
 
     def get_pos_reviews(self, pages):
         reviews = []
