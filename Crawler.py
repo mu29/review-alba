@@ -10,14 +10,14 @@ class Crawler:
     def get_pos_reviews(self, pages):
         reviews = []
         for page in range(0, pages):
-            reviews += self.get_pos_reviews(page, True)
+            reviews += self.get_reviews(page, True)
 
         return reviews
 
     def get_neg_reviews(self, pages):
         reviews = []
         for page in range(0, pages):
-            reviews += self.get_pos_reviews(page, False)
+            reviews += self.get_reviews(page, False)
 
         return reviews
 
@@ -30,7 +30,7 @@ class Crawler:
         reviews = []
         for i in range(0, len(points)):
             point = int(points[i].string)
-            if ((positive and point > 7) or (!positive and point < 4))
+            if ((positive and point > 7) or (not positive and point < 4)):
                 reviews.append(contents[i].contents[3].contents[0].strip())
 
         return reviews
