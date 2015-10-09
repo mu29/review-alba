@@ -6,8 +6,12 @@ from Crawler import *
 crawler = Crawler()
 markov = Markov()
 
-reviews = crawler.get_pos_reviews(1000)
+reviews = crawler.get_pos_reviews(3000)
 markov.make_database(reviews)
 
-for i in range(0, 100):
-    print markov.make_comment()
+result = open('result.txt', 'w')
+
+for i in range(0, 1000):
+    comment = markov.make_comment()
+    result.write(comment + '\n')
+    print comment
