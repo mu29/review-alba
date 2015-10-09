@@ -11,12 +11,11 @@ class Markov:
 
     def make_database(self, reviews):
         for review in reviews:
-            self.data.write(review)
+            self.data.write(review.encode('utf-8') + '\n')
             words = review.split(' ')
             is_new_node = True
-            for i in range(0, len(words)):
+            for i in range(0, len(words) - 1):
                 word = words[i]
-                print word
                 node = None
                 if word in self.nodes:
                     node = self.nodes[word]
@@ -38,6 +37,14 @@ class Markov:
                 if is_new_node:
                     node.start = True
                     self.start_nodes.append(node)
+
+            word = words[len(words) - 1]
+            if not word in self.nodes:
+                node = Node()
+                node.text = word
+                node.end = True
+                self.nodes[word] = node
+
 
     def make_comment(self):
         index = random.randrange(0, len(self.start_nodes))
